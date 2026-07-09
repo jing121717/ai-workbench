@@ -1,0 +1,54 @@
+# Environment
+.env
+.venv/
+venv/
+ENV/
+
+# Byte-compiled
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Database
+*.sqlite3
+*.db
+
+# IDE
+.vscode/
+.idea/
+.agents/
+*.swp
+*.swo
+
+# Testing
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Node
+node_modules/
+dist/
+build/
+frontend/dist/
+
+# Logs
+logs/
+*.log
+
+# Project specific
+chroma_db/
+uploads/
+gui_cache/
+AIWorkbench/
+gui/dist/
+gui/build/
+docs/screenshots/*.png
+docs/screenshots/*.jpg
+
+# OS
+.DS_Store
+Thumbs.db
