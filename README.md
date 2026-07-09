@@ -1,37 +1,36 @@
-# 🤖 AI Workbench · 全栈 AI 智能代码工作台
+# 🤖 AI Workbench
 
-> 一套完整的前后端分离架构项目，包含 **FastAPI 后端**、**Vue3 网页端**、**PySide6 桌面客户端**，实现 **Web / 桌面双端数据互通**，支持 **Docker 容器化部署**与**桌面端 EXE 离线打包**，可直接用于毕设 / 简历项目。
+> AI Workbench is a full-stack AI coding workspace with a FastAPI backend, a Vue 3 web client, and a PySide6 desktop client. It supports account authentication, streaming chat, local knowledge-base search, code-assistant features, Docker-based deployment, and desktop packaging with PyInstaller.
 
 ---
 
-## 📋 功能清单
+## 📋 Features
 
-### 🌐 Web 前端（Vue3 + Element Plus）
-- ✅ JWT 用户登录 / 注册
-- ✅ SSE 服务端流式对话，实时打字机效果
-- ✅ 多会话管理（创建 / 切换 / 删除 / 重命名）
-- ✅ PDF / TXT 文档上传，构建私有 RAG 知识库
-- ✅ 快捷指令与问题提示
-- ✅ 深色科技风格 UI，流畅动画
+### 🌐 Web Frontend (Vue3 + Element Plus)
+- ✅ JWT user login / registration
+- ✅ SSE server-side streaming conversation with real-time typewriter effect
+- ✅ Multi-session management (create / switch / delete / rename)
+- ✅ PDF / TXT document upload, build private RAG knowledge base
+- ✅ Shortcut commands and question prompts
+- ✅ Dark tech-style UI with smooth animations
 
-### ⚡ 后端（FastAPI + LangChain）
-- ✅ JWT Bearer Token 认证
-- ✅ RESTful API + SSE 流式输出接口
-- ✅ Redis 令牌桶限流
-- ✅ Chroma 向量数据库 + Qwen Embedding RAG 检索
-- ✅ 预置 23 条编程知识库（离线可用）
-- ✅ PDF 文件解析与向量化入库
-- ✅ 全局异常捕获与统一响应格式
-- ✅ CORS 跨域配置
+### ⚡ Backend (FastAPI + LangChain)
+- ✅ JWT Bearer Token authentication
+- ✅ RESTful API + SSE streaming output interface
+- ✅ Redis token bucket rate limiting
+- ✅ Chroma vector database + Qwen Embedding RAG retrieval
+- ✅ 23 preset programming knowledge bases (offline available)
+- ✅ PDF parsing and vectorized storage
+- ✅ Global exception handling and unified response format
+- ✅ CORS cross-origin configuration
 
-### 🖥️ 桌面客户端（PySide6）
-- ✅ 三栏布局（会话列表 / 对话 / 知识库+设置）
-- ✅ QThread 多线程隔离，网络请求不卡 UI
-- ✅ SQLite 本地会话缓存（离线可用）
-- ✅ 预置知识库离线 AI 问答
-- ✅ PDF/TXT 文档上传（多线程）
-- ✅ 一键 PyInstaller 打包为独立 EXE
-
+### 🖥️ Desktop Client (PySide6)
+- ✅ Three-column layout (session list / conversation / knowledge base + settings)
+- ✅ QThread multithread isolation, network requests won’t block UI
+- ✅ SQLite local session cache (offline available)
+- ✅ Offline AI Q&A with preset knowledge base
+- ✅ PDF/TXT document upload (multithreaded)
+- ✅ One-click PyInstaller packaging into standalone EXE
 ---
 
 ## 🏗️ 技术架构
@@ -64,7 +63,7 @@
 
 ---
 
-## 📁 项目结构
+## 📁Project Structure
 
 ```
 ai-workbench/
@@ -122,154 +121,152 @@ ai-workbench/
 
 ---
 
-## 🚀 本地启动步骤
+## 🚀  Local Startup Steps 
 
-### 方式一：Docker 部署（推荐）
+### Method 1: Docker Deployment (Recommended)
 
 ```bash
-# 克隆项目
+# Clone the project
 git clone https://github.com/jing121717/ai-workbench.git
 cd ai-workbench
 
-# 启动所有服务（MySQL + Redis + 后端 + 前端）
+# Start all services (MySQL + Redis + Backend + Frontend) 
 docker compose up -d
 
-# 访问
-# 前端页面：http://localhost:5173
-# 后端 API：http://localhost:8000
-# 默认账号：admin / Admin@123456
+# Access
+# Frontend page：http://localhost:5173
+# Backend API:http://localhost:8000
+#  Default account：admin / Admin@123456
 ```
 
-### 方式二：本地开发
+### Method 2: Local Development
 
-**1. 安装依赖**
+**1. Install Dependencies**
 ```bash
-# 后端
+# Backend
 cd backend
 pip install -r ../requirements.txt
 
-# 前端
+# Frontend
 cd frontend
 npm install
 ```
 
-**2. 初始化数据库**
+**2. Initialize the Database**
 ```bash
 cd backend
 python init_db.py
-# 创建管理员账号：admin / Admin@123456
+# Create an admin account: admin / Admin@123456
 ```
 
-**3. 启动后端**
+**3. Start the Backend**
 ```bash
 cd backend
 uvicorn app.main:app --reload --port 8000
 ```
 
-**4. 启动前端**
+**4. Start the Frontend**
 ```bash
 cd frontend
 npm run dev -- --host 0.0.0.0
 ```
 
-**5. 一键脚本（Linux/macOS）**
+**5. One-Click Script (Linux/macOS)**
 ```bash
 bash scripts/start_all.sh
 ```
 
 ---
 
-## 🐳 Docker 部署
+## 🐳 Docker Deployment
 
-### 前提条件
-- Docker Desktop 已安装
-- 端口 8000、3306、6379、5173 未被占用
+### Prerequisites
+- Docker Desktop installed
+- Ports 8000, 3306, 6379, 5173 not in use
 
-### 启动命令
+### Start Command
 ```bash
 docker compose up -d
 ```
 
-### 查看日志
+### View Logs
 ```bash
 docker compose logs -f backend
 docker compose logs -f frontend
 ```
 
-### 停止服务
+### Stop Services
 ```bash
 docker compose down
 ```
 
 ---
 
-## 🖥️ 桌面端 EXE 打包（Windows）
+## 🖥️ Desktop EXE Packaging (Windows)
 
-### 方式一：使用脚本（推荐）
+### Method 1: Using Script (Recommended)
 
 ```bat
-# 1. 创建虚拟环境并安装依赖
-scripts\setup_gui_env.bat
+# 1. Create a virtual environment and install dependencies
+scriptssetup_gui_env.bat
 
-# 2. 打包 EXE（生成 gui\dist\AIWorkbench\AIWorkbench.exe）
-scripts\package_gui.bat
+# 2. Package EXE (generates guidistAIWorkbenchAIWorkbench.exe)
+scriptspackage_gui.bat
 ```
-
-### 方式二：手动打包
+### Method 2: Manual Packaging
 
 ```bat
-# 安装依赖
+# Install dependencies
 pip install pyinstaller pyside6 requests
 
-# 执行打包
+# Run packaging
 cd gui
 pyinstaller ai_workbench.spec --clean
 
-# EXE 位置：gui/dist/AIWorkbench/AIWorkbench.exe
+# EXE location: gui/dist/AIWorkbench/AIWorkbench.exe
 ```
 
-### 使用 EXE（无需 Python 环境）
+### Using the EXE (No Python Environment Needed)
 
-1. 进入 `gui\dist\AIWorkbench\` 目录
-2. 双击 `AIWorkbench.exe` 即可运行
-3. 首次使用：
-   - 在"设置"中确认后端地址（默认 `http://127.0.0.1:8000`）
-   - 或输入 `true` 启用离线模式，直接基于预置知识库问答
-4. 默认离线账号：admin / Admin@123456
-
----
-
-## 🔑 默认账号
-
-| 平台 | 用户名 | 密码 |
-|------|--------|------|
-| Web 后台 / 网页 | `admin` | `Admin@123456` |
-| 桌面客户端 | 同上 | 同上 |
+1. Go to the `guidistAIWorkbench` directory
+2. Double-click `AIWorkbench.exe` to run
+3. First-time use:
+- Confirm the backend address in "Settings" (default is `http://127.0.0.1:8000`)
+- Or enter `true` to enable offline mode to directly ask questions based on the preset knowledge base
+4. Default offline account: admin / Admin@123456
 
 ---
 
-## 🌐 API 接口一览
+## 🔑 Default Accounts
 
-| 方法 | 路径 | 说明 |
-|------|------|------|
-| POST | `/api/v1/auth/login` | 用户登录，返回 JWT |
-| POST | `/api/v1/auth/register` | 用户注册 |
-| GET | `/api/v1/auth/me` | 获取当前用户信息 |
-| GET | `/api/v1/chat/sessions` | 获取会话列表 |
-| POST | `/api/v1/chat/sessions` | 创建新会话 |
-| DELETE | `/api/v1/chat/sessions/{id}` | 删除会话 |
-| GET | `/api/v1/chat/sessions/{id}/messages` | 获取会话消息 |
-| POST | `/api/v1/chat/stream` | SSE 流式对话 |
-| GET | `/api/v1/knowledge/documents` | 获取文档列表 |
-| POST | `/api/v1/knowledge/upload` | 上传文档 |
-| DELETE | `/api/v1/knowledge/documents/{id}` | 删除文档 |
-| GET | `/api/health` | 健康检查 |
+| Platform | Username | Password |
+|---------|---------|---------|
+| Web Admin / Web | `admin` | `Admin@123456` |
+| Desktop Client | Same as above | Same as above |
 
 ---
 
-## ⚙️ 环境变量
+## 🌐 API Endpoints Overview
 
-复制 `.env.example` 为 `.env` 并修改：
+| Method | Path | Description |
+|--------|------|------------|
+| POST | `/api/v1/auth/login` | User login, returns JWT |
+| POST | `/api/v1/auth/register` | User registration |
+| GET | `/api/v1/auth/me` | Get current user info |
+| GET | `/api/v1/chat/sessions` | Get list of chat sessions |
+| POST | `/api/v1/chat/sessions` | Create a new session |
+| DELETE | `/api/v1/chat/sessions/{id}` | Delete a session |
+| GET | `/api/v1/chat/sessions/{id}/messages` | Get messages of a session |
+| POST | `/api/v1/chat/stream` | SSE streaming chat |
+| GET | `/api/v1/knowledge/documents` | Get list of documents |
+| POST | `/api/v1/knowledge/upload` | Upload a document |
+| DELETE | `/api/v1/knowledge/documents/{id}` | Delete a document |
+| GET | `/api/health` | Health check |
+
+---
+## ⚙️ Environment Variables
+
+Copy `.env.example` to `.env` and modify:
 
 ```bash
 DATABASE_URL=mysql+pymysql://root:Root@123456@localhost:3306/ai_workbench
@@ -282,37 +279,31 @@ MODEL_DEVICE=cpu
 
 ---
 
-## 📚 预置知识库
+## 📚 Built-in Knowledge Base
 
-系统内置 23 条常见编程问答，覆盖以下方向：
+The system comes with 23 common programming Q&As, covering the following areas:
 
-| 分类 | 内容 |
-|------|------|
-| 🏆 Git | 常用命令、冲突解决、SSH Key、工作流、撤销操作 |
-| 🐳 Docker | 常用命令、Dockerfile 最佳实践、Compose 编排、网络与卷 |
-| 🗄️ SQL | 查询语句、索引优化、事务锁、面试题 |
-| 🐍 Python | 装饰器、async/await、报错处理、性能优化、设计模式 |
-| 🏗️ 系统设计 | 高并发架构、RESTful API、微服务、消息队列 |
-| 🎨 前端 | ES6+ 语法、Vue3 组合式 API、TypeScript、性能优化 |
-| ⚡ Redis | 数据结构、缓存策略、分布式锁 |
-| 🌐 网络 | HTTP 状态码、WebSocket、TLS 握手、TCP 三次握手 |
-| 🚀 DevOps | CI/CD 流水线设计 |
-| ✅ 最佳实践 | 代码审查要点、故障排查、技术方案写作 |
-
----
-
-## ✨ 项目亮点
-
-1. **前后端分离 + 双端互通**：Web 端和桌面端共用同一后端，数据实时同步
-2. **RAG 知识库**：支持 PDF/TXT 上传，构建私有向量知识库
-3. **离线优先**：桌面端预置知识库，无网络也能回答常见编程问题
-4. **流式输出**：SSE 实现打字机效果，用户体验接近 ChatGPT
-5. **多线程隔离**：PySide6 使用 QThread，避免 UI 卡顿
-6. **容器化部署**：Docker Compose 一键启动全套依赖
-7. **可离线运行**：PyInstaller 打包为 EXE，无需配置 Python 环境
+| Category | Content |
+|---------|---------|
+| 🏆 Git | Common commands, conflict resolution, SSH Key, workflow, undo operations |
+| 🐳 Docker | Common commands, Dockerfile best practices, Compose orchestration, networking & volumes |
+| 🗄️ SQL | Queries, index optimization, transaction locks, interview questions |
+| 🐍 Python | Decorators, async/await, error handling, performance optimization, design patterns |
+| 🏗️ System Design | High-concurrency architectures, RESTful API, microservices, message queues |
+| 🎨 Frontend | ES6+ syntax, Vue3 Composition API, TypeScript, performance optimization |
+| ⚡ Redis | Data structures, caching strategies, distributed locks |
+| 🌐 Networking | HTTP status codes, WebSocket, TLS handshake, TCP three-way handshake |
+| 🚀 DevOps | CI/CD pipeline design |
+| ✅ Best Practices | Code review essentials, troubleshooting, technical proposal writing |
 
 ---
 
-## 📝 License
+## ✨ Project Highlights
 
-MIT License · 可自由使用于毕设、简历项目、开源学习
+1. **Frontend-Backend Separation + Dual-End Sync**: The web and desktop versions share the same backend, with real-time data sync.
+2. **RAG Knowledge Base**: Supports PDF/TXT uploads to build a private vector knowledge base.
+3. **Offline-First**: The desktop app comes with a preloaded knowledge base, answering common programming questions without the internet.
+4. **Streaming Output**: SSE creates a typewriter effect, giving a ChatGPT-like experience.
+5. **Multi-Thread Isolation**: Uses QThread in PySide6 to avoid UI lag.
+6. **Containerized Deployment**: Docker Compose allows one-click launch of all dependencies.
+7. **Offline Capable**: Packaged into an EXE with PyInstaller, no Python setup needed.
